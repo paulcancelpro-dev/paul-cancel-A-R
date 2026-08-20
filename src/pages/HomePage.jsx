@@ -4,20 +4,18 @@ import {
   BarChart3,
   CheckCircle2,
   ClipboardList,
-  Code2,
   FileText,
   Gauge,
-  GraduationCap,
   ShieldCheck,
-  TerminalSquare,
   Wrench,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import analysisExample from '../assets/analyse-example.pdf'
 
 const services = [
   {
     icon: FileText,
-    title: "Rapport d'audit et d'analyse",
+    title: "Analyse de la codebase",
     text: 'Un diagnostic technique lisible pour prioriser les risques, la dette et les corrections utiles sur vos applications Java.',
     points: ['Synthèse exécutive', 'Scores SonarQube', 'Couverture JaCoCo'],
   },
@@ -31,19 +29,19 @@ const services = [
 
 const metrics = [
   { label: 'Sécurité', value: 'D -> A', tone: 'danger' },
-  { label: 'Couverture visée', value: '> 80 %', tone: 'success' },
-  { label: 'Duplication', value: '0 %', tone: 'neutral' },
-  { label: 'Effort estimé', value: '2 j', tone: 'neutral' },
+  { label: 'Couverture visée', value: '43% -> 80 %', tone: 'mid' },
+  { label: 'Duplication', value: '23% -> 5%', tone: 'success' },
+  { label: 'Effort estimé', value: '18 j', tone: 'neutral' },
 ]
 
 const steps = [
-  'Analyse statique SonarQube et lecture du code métier',
-  'Mesure de couverture JaCoCo et repérage des zones aveugles',
-  'Priorisation P0/P1 avec impact technique et business',
+  'Analyse statique de la qualité de code et des vulnérabilités',
+  'Mesure de la couverture de tests et des zones aveugles',
+  'Priorisation P0/P1 des différents risques identifiés',
   'Correction, tests JUnit 5 et contre-expertise finale',
 ]
 
-const stack = ['Java', 'Spring Boot', 'Quarkus', 'SonarQube', 'JaCoCo', 'JUnit 5']
+const stack = ['Java', 'Spring Boot', 'Quarkus', 'JUnit 5']
 
 function HomePage() {
   return (
@@ -59,17 +57,22 @@ function HomePage() {
           </p>
           <div className="hero-actions">
             <Link className="button primary" to="/contact">
-              Demander un audit
+              Faire une demande
               <ArrowRight size={18} />
             </Link>
-            <a className="button secondary" href="#rapport">
+            <a
+              className="button secondary"
+              href={analysisExample}
+              target="_blank"
+              rel="noreferrer"
+            >
               Voir un exemple
               <ClipboardList size={18} />
             </a>
           </div>
         </div>
 
-        <div className="audit-preview" aria-label="Exemple de rapport d'audit">
+        <div className="audit-preview" aria-label="Exemple d'une analyse">
           <div className="preview-topbar">
             <span></span>
             <span></span>
@@ -79,7 +82,7 @@ function HomePage() {
           <div className="preview-body">
             <div>
               <p className="preview-label">Score de santé</p>
-              <h2>Audit technique</h2>
+              <h2>Analyse technique</h2>
             </div>
             <div className="score-grid">
               {metrics.map((metric) => (
@@ -112,7 +115,7 @@ function HomePage() {
       <section className="section" id="services">
         <div className="section-heading">
           <p className="eyebrow">Deux offres complémentaires</p>
-          <h2>De la lecture du code à la correction vérifiée.</h2>
+          <h2>Une compréhension approfondie de votre codebase et de son infrastructure. Puis une correction vérifiée</h2>
         </div>
         <div className="service-grid">
           {services.map(({ icon: Icon, title, text, points }) => (
@@ -137,12 +140,13 @@ function HomePage() {
 
       <section className="section split-section" id="rapport">
         <div>
-          <p className="eyebrow">Livrable d'audit</p>
-          <h2>Un rapport qui parle autant technique que décision.</h2>
+          <p className="eyebrow">Analyse complète</p>
+          <h2>Un rapport axé technique et organisationnel.</h2>
           <p>
-            Le document met en avant les notes de sécurité, fiabilité,
-            maintenabilité, couverture de tests et duplication, puis relie
-            chaque problème à un impact et à un effort de correction.
+            Je vous met en avant tous les problèmes de sécurité et de maintenabilité,
+            mais également les codes smells, les points d'amélioration et les zones aveugles.
+            Ensuite je vous expose les différents impacts et efforts de correction nécessaires
+            ainsi que l'urgence de ceux-ci dans un plan d'action organisé.
           </p>
         </div>
         <div className="report-list">
@@ -164,7 +168,7 @@ function HomePage() {
       <section className="section method-section" id="methode">
         <div className="section-heading">
           <p className="eyebrow">Méthode</p>
-          <h2>Une intervention courte, tracée et mesurable.</h2>
+          <h2>Une intervention tracée et mesurable.</h2>
         </div>
         <ol className="timeline">
           {steps.map((step, index) => (
@@ -176,35 +180,6 @@ function HomePage() {
         </ol>
       </section>
 
-      <section className="section profile-section" id="profil">
-        <div className="profile-copy">
-          <p className="eyebrow">Profil</p>
-          <h2>Spécialisé Java, Spring Boot et Quarkus.</h2>
-          <p>
-            Diplomé d'un BUT informatique à Lille spécialisé en développement, je
-            suis actuellement à l'IMT Nord Europe en alternance, en première année du
-            parcours Informatique et Télécommunications, spécialité Informatique. Je
-            suis spécialisé dans le développement backend Java.
-          </p>
-        </div>
-        <div className="profile-facts">
-          <div>
-            <Code2 size={22} />
-            <strong>Code review orientée production</strong>
-            <span>Architecture, dette, sécurité et tests.</span>
-          </div>
-          <div>
-            <TerminalSquare size={22} />
-            <strong>Stack backend Java</strong>
-            <span>Spring Boot, Quarkus, JUnit, outillage qualité.</span>
-          </div>
-          <div>
-            <GraduationCap size={22} />
-            <strong>Formation developpement</strong>
-            <span>BUT informatique puis IMT Nord Europe.</span>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }

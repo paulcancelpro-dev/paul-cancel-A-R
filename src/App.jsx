@@ -3,6 +3,7 @@ import Header from './components/Header.jsx'
 import RouteScrollManager from './components/RouteScrollManager.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import HomePage from './pages/HomePage.jsx'
+import ProfilePage from './pages/ProfilePage.jsx'
 import './App.css'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/profil" element={<ProfilePage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
