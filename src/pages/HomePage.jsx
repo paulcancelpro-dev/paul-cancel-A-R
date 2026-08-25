@@ -180,6 +180,16 @@ function HomePage() {
         </ol>
       </section>
 
+      <section className="home-contact-section" aria-labelledby="home-contact-title">
+        <div>
+          <p className="eyebrow">Parlons de votre projet</p>
+          <h2 id="home-contact-title">Besoin de renseignements&nbsp;?</h2>
+        </div>
+        <Link className="button primary" to="/contact">
+          Me contacter
+          <ArrowRight size={18} />
+        </Link>
+      </section>
     </main>
   )
 }
