@@ -10,7 +10,6 @@ function ContactPage() {
             <ArrowLeft size={17} />
             Retour à l'accueil
           </Link>
-          <p className="eyebrow">Contact</p>
           <h1 id="contact-title">Parlons de votre codebase.</h1>
           <p>
             Faites appel à moi pour résoudre vos soucis de dette technique, de couverture de tests et de faille de sécurité.
@@ -19,7 +18,6 @@ function ContactPage() {
         </div>
         <aside className="contact-card" aria-label="Coordonnées de contact">
           <div className="contact-card-heading">
-            <span>Contactez moi</span>
             <h2>Échangeons par email.</h2>
             <p>
               Présentez-moi votre projet, votre entreprise ainsi que vos frameworks

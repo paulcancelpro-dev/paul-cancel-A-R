@@ -11,6 +11,7 @@ function Header() {
       <nav aria-label="Navigation principale">
         <Link to="/#services">Services</Link>
         <Link to="/#methode">Méthode</Link>
+        <Link to="/offres">Offres</Link>
         <Link to="/profil">Profil</Link>
       </nav>
       <Link className="nav-cta" to="/contact">

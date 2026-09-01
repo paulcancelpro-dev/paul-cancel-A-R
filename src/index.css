@@ -4,7 +4,8 @@
   --soft: #f7fafb;
   --ink: #1a262a;
   --muted: #68777d;
-  --line: #dde7ea;
+  --line: #c8d6da;
+  --line-strong: #aebfc4;
   --teal: #20697c;
   --teal-900: #174f5f;
   --teal-700: #20697c;
@@ -32,10 +33,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(244, 247, 248, 0.98) 42%),
-    radial-gradient(circle at top left, rgba(32, 105, 124, 0.1), transparent 36%),
-    var(--page);
+  background: var(--page);
 }
 
 button,

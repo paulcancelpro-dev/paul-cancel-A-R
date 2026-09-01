@@ -1,26 +1,16 @@
 import {
   ArrowRight,
-  BadgeCheck,
-  BarChart3,
-  CheckCircle2,
-  ClipboardList,
-  FileText,
-  Gauge,
-  ShieldCheck,
-  Wrench,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import analysisExample from '../assets/analyse-example.pdf'
 
 const services = [
   {
-    icon: FileText,
     title: "Analyse de la codebase",
     text: 'Un diagnostic technique lisible pour prioriser les risques, la dette et les corrections utiles sur vos applications Java.',
     points: ['Synthèse exécutive', 'Scores SonarQube', 'Couverture JaCoCo'],
   },
   {
-    icon: Wrench,
     title: 'Correction et refacto',
     text: 'Une intervention ciblée pour corriger les points identifiés, renforcer les tests et rendre la base plus maintenable.',
     points: ['Correctifs P0/P1', 'Refacto progressif', 'Validation après scan'],
@@ -67,7 +57,6 @@ function HomePage() {
               rel="noreferrer"
             >
               Voir un exemple
-              <ClipboardList size={18} />
             </a>
           </div>
         </div>
@@ -93,7 +82,6 @@ function HomePage() {
               ))}
             </div>
             <div className="finding">
-              <ShieldCheck size={22} />
               <div>
                 <strong>Risque prioritaire détecté</strong>
                 <p>
@@ -114,21 +102,17 @@ function HomePage() {
 
       <section className="section" id="services">
         <div className="section-heading">
-          <p className="eyebrow">Deux offres complémentaires</p>
-          <h2>Une compréhension approfondie de votre codebase et de son infrastructure. Puis une correction vérifiée</h2>
+          <h2 className="section-title">Services</h2>
+          <p className="section-lead">Une compréhension approfondie de votre codebase et de son infrastructure. Puis une correction vérifiée</p>
         </div>
         <div className="service-grid">
-          {services.map(({ icon: Icon, title, text, points }) => (
+          {services.map(({title, text, points }) => (
             <article className="service-card" key={title}>
-              <div className="icon-badge">
-                <Icon size={24} />
-              </div>
               <h3>{title}</h3>
               <p>{text}</p>
               <ul>
                 {points.map((point) => (
                   <li key={point}>
-                    <CheckCircle2 size={18} />
                     {point}
                   </li>
                 ))}
@@ -140,8 +124,8 @@ function HomePage() {
 
       <section className="section split-section" id="rapport">
         <div>
-          <p className="eyebrow">Analyse complète</p>
-          <h2>Un rapport axé technique et organisationnel.</h2>
+          <h2 className="section-title">Analyse complète</h2>
+          <p className="section-lead">Un rapport axé technique et organisationnel.</p>
           <p>
             Je vous met en avant tous les problèmes de sécurité et de maintenabilité,
             mais également les codes smells, les points d'amélioration et les zones aveugles.
@@ -151,15 +135,12 @@ function HomePage() {
         </div>
         <div className="report-list">
           <div>
-            <BadgeCheck size={21} />
             <span>Synthèse exécutive pour arbitrer rapidement</span>
           </div>
           <div>
-            <Gauge size={21} />
             <span>Priorités P0/P1 avec zones fragiles du code</span>
           </div>
           <div>
-            <BarChart3 size={21} />
             <span>Objectifs mesurables après intervention</span>
           </div>
         </div>
@@ -167,8 +148,8 @@ function HomePage() {
 
       <section className="section method-section" id="methode">
         <div className="section-heading">
-          <p className="eyebrow">Méthode</p>
-          <h2>Une intervention tracée et mesurable.</h2>
+          <h2 className="section-title">Méthode</h2>
+          <p className="section-lead">Une intervention tracée et mesurable.</p>
         </div>
         <ol className="timeline">
           {steps.map((step, index) => (
@@ -182,7 +163,6 @@ function HomePage() {
 
       <section className="home-contact-section" aria-labelledby="home-contact-title">
         <div>
-          <p className="eyebrow">Parlons de votre projet</p>
           <h2 id="home-contact-title">Besoin de renseignements&nbsp;?</h2>
         </div>
         <Link className="button primary" to="/contact">
