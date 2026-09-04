@@ -1,4 +1,23 @@
 import profilePhoto from '../assets/photoprofil.jpeg'
+import dockerLogo from '../assets/logos/docker.png'
+import javaLogo from '../assets/logos/java.png'
+import quarkusLogo from '../assets/logos/quarkus.png'
+import sonarQubeLogo from '../assets/logos/sonarqube.svg'
+import springBootLogo from '../assets/logos/spring-boot.svg'
+import jeeLogo from '../assets/logos/JakartaEE.png'
+import junitLogo from '../assets/logos/junit.svg'
+import postgresqlLogo from '../assets/logos/postgresql.png'
+
+const technologies = [
+  { name: 'Java', logo: javaLogo },
+  { name: 'Spring Boot', logo: springBootLogo },
+  { name: 'Quarkus', logo: quarkusLogo },
+  { name: 'Jakarta EE', logo: jeeLogo },
+  { name: 'Docker', logo: dockerLogo },
+  { name: 'SonarQube', logo: sonarQubeLogo },
+  { name: 'JUnit 5', logo: junitLogo },
+  { name: 'PostgreSQL', logo: postgresqlLogo },
+]
 
 function ProfilePage() {
   return (
@@ -32,6 +51,28 @@ function ProfilePage() {
             <span>BUT informatique puis IMT Nord Europe.</span>
           </div>
         </div>
+
+        <section className="profile-technologies" aria-labelledby="technologies-title">
+          <h2 id="technologies-title">Technologies</h2>
+          <div className="profile-logo-marquee">
+            <div className="profile-logo-track">
+              {[false, true].map((isDuplicate) => (
+                <div
+                  className="profile-logo-set"
+                  key={isDuplicate ? 'duplicate' : 'original'}
+                  aria-hidden={isDuplicate || undefined}
+                >
+                  {technologies.map((technology) => (
+                    <div className="profile-logo-item" key={technology.name}>
+                      <img src={technology.logo} alt={isDuplicate ? '' : technology.name} />
+                      <span>{technology.name}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </section>
     </main>
   )

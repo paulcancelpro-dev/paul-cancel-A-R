@@ -275,8 +275,8 @@
 }
 
 .score.danger {
-  background: #fff2f2;
-  border-color: #ffd5d5;
+  background: #ffdada;
+  border-color: #ffa9a9;
 }
 
 .score.success {
@@ -546,7 +546,8 @@
   grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
   grid-template-areas:
     'portrait copy'
-    'portrait facts';
+    'portrait facts'
+    'logos logos';
   align-items: center;
   gap: 28px clamp(48px, 7vw, 92px);
   padding: clamp(54px, 8vw, 104px) 0 clamp(72px, 9vw, 116px);
@@ -625,6 +626,89 @@
   margin-top: 0;
   font-size: 0.88rem;
   line-height: 1.5;
+}
+
+.profile-technologies {
+  grid-area: logos;
+  min-width: 0;
+  margin-top: clamp(34px, 5vw, 58px);
+  padding-top: 34px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.profile-technologies h2 {
+  margin: 0 0 22px;
+  color: var(--ink);
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.profile-logo-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.profile-logo-track {
+  width: max-content;
+  display: flex;
+  gap: 18px;
+  animation: profile-logo-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+.profile-logo-set {
+  display: flex;
+  gap: 18px;
+}
+
+.profile-logo-item {
+  width: 180px;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  box-sizing: border-box;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.profile-logo-item img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.profile-logo-item span {
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@keyframes profile-logo-scroll {
+  to {
+    transform: translateX(calc(-50% - 9px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-logo-marquee {
+    overflow-x: auto;
+  }
+
+  .profile-logo-track {
+    animation: none;
+  }
+
+  .profile-logo-set[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 .contact-page {
@@ -1377,7 +1461,8 @@
     grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
     grid-template-areas:
       'portrait copy'
-      'facts facts';
+      'facts facts'
+      'logos logos';
     align-items: center;
   }
 
@@ -1507,7 +1592,8 @@
     grid-template-areas:
       'portrait'
       'copy'
-      'facts';
+      'facts'
+      'logos';
     gap: 38px;
     padding: 30px 0 64px;
   }
@@ -1523,6 +1609,22 @@
 
   .profile-page .profile-facts div {
     min-height: auto;
+  }
+
+  .profile-technologies {
+    margin-top: 12px;
+    padding-top: 28px;
+  }
+
+  .profile-logo-item {
+    width: 154px;
+    min-height: 86px;
+    padding: 13px;
+  }
+
+  .profile-logo-item img {
+    width: 40px;
+    height: 40px;
   }
 
   .offers-grid,

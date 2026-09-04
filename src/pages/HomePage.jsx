@@ -18,9 +18,9 @@ const services = [
 ]
 
 const metrics = [
-  { label: 'Sécurité', value: 'D -> A', tone: 'danger' },
-  { label: 'Couverture visée', value: '43% -> 80 %', tone: 'mid' },
-  { label: 'Duplication', value: '23% -> 5%', tone: 'success' },
+  { label: 'Sécurité', value: 'D', tone: 'danger' },
+  { label: 'Couverture visée', value: '43%', tone: 'mid' },
+  { label: 'Duplication', value: '23%', tone: 'mid' },
   { label: 'Effort estimé', value: '18 j', tone: 'neutral' },
 ]
 
@@ -43,7 +43,7 @@ function HomePage() {
           <p className="hero-copy">
             J'aide les équipes à comprendre leur dette technique, sécuriser
             leurs services Spring Boot ou Quarkus, puis corriger les points
-            critiques avec des livrables concrets.
+            critiques.
           </p>
           <div className="hero-actions">
             <Link className="button primary" to="/contact">
