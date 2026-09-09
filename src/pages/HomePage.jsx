@@ -1,27 +1,35 @@
-import {
-  ArrowRight,
-} from 'lucide-react'
+import { Fragment, useEffect, useRef, useState } from 'react'
+import { ArrowRight, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import analysisExample from '../assets/analyse-example.pdf'
+import dockerLogo from '../assets/logos/docker.png'
+import javaLogo from '../assets/logos/java.png'
+import junitLogo from '../assets/logos/junit.svg'
+import mongoDbLogo from '../assets/logos/mongoDb.svg'
+import postgresqlLogo from '../assets/logos/postgresql.png'
+import quarkusLogo from '../assets/logos/quarkus.png'
+import sonarQubeLogo from '../assets/logos/sonarqube.svg'
+import springBootLogo from '../assets/logos/spring-boot.svg'
 
-const services = [
+const primaryServices = [
   {
-    title: "Analyse de la codebase",
-    text: 'Un diagnostic technique lisible pour prioriser les risques, la dette et les corrections utiles sur vos applications Java.',
-    points: ['Synthèse exécutive', 'Scores SonarQube', 'Couverture JaCoCo'],
+    stage: 'Comprendre',
+    title: 'Analyse et diagnostic',
+    text: 'Je regarde votre code, puis je vous fais un diagnostic des problèmes que je vous rends sous la forme d’un rapport avec un plan de résolution organisé.',
+    offersSection: 'analyse-diagnostic',
   },
   {
-    title: 'Correction et refacto',
-    text: 'Une intervention ciblée pour corriger les points identifiés, renforcer les tests et rendre la base plus maintenable.',
-    points: ['Correctifs P0/P1', 'Refacto progressif', 'Validation après scan'],
+    stage: 'Améliorer',
+    title: 'Correction et refactorisation',
+    text: 'En me basant sur l’analyse précédente, j’applique des correctifs par ordre de priorités. Je vous montre ensuite les changements et impacts avec une contre analyse.',
+    offersSection: 'correction-refactorisation',
   },
-]
-
-const metrics = [
-  { label: 'Sécurité', value: 'D', tone: 'danger' },
-  { label: 'Couverture visée', value: '43%', tone: 'mid' },
-  { label: 'Duplication', value: '23%', tone: 'mid' },
-  { label: 'Effort estimé', value: '18 j', tone: 'neutral' },
+  {
+    stage: 'Maintenir',
+    title: 'Accompagnement mensuel',
+    text: 'Une fois que votre application est dans un état stable, je vous propose de la vérifier régulièrement. L’objectif est d’éviter que la dette technique ne s\'accumule à nouveau. ',
+    offersSection: 'accompagnement-mensuel',
+  },
 ]
 
 const steps = [
@@ -31,118 +39,120 @@ const steps = [
   'Correction, tests JUnit 5 et contre-expertise finale',
 ]
 
-const stack = ['Java', 'Spring Boot', 'Quarkus', 'JUnit 5']
+const technologies = [
+  { name: 'Java', logo: javaLogo },
+  { name: 'Spring Boot', logo: springBootLogo },
+  { name: 'Quarkus', logo: quarkusLogo },
+  { name: 'Docker', logo: dockerLogo },
+  { name: 'SonarQube', logo: sonarQubeLogo },
+  { name: 'JUnit 5', logo: junitLogo },
+  { name: 'PostgreSQL', logo: postgresqlLogo },
+  { name: 'MongoDB', logo: mongoDbLogo },
+]
 
 function HomePage() {
+  const [selectedService, setSelectedService] = useState(null)
+  const closeButtonRef = useRef(null)
+  const serviceTriggerRef = useRef(null)
+
+  useEffect(() => {
+    if (!selectedService) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setSelectedService(null)
+    }
+
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', handleKeyDown)
+    requestAnimationFrame(() => closeButtonRef.current?.focus())
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', handleKeyDown)
+      requestAnimationFrame(() => serviceTriggerRef.current?.focus())
+    }
+  }, [selectedService])
+
+  const openService = (service, trigger) => {
+    serviceTriggerRef.current = trigger
+    setSelectedService(service)
+  }
+
   return (
     <main id="top">
       <section className="hero-section">
         <div className="hero-content">
           <p className="eyebrow">Analyse et refacto pour applications Java</p>
-          <h1>Paul Cancel A&R</h1>
+          <h1>
+            Paul Cancel <span>A&amp;R</span>
+          </h1>
           <p className="hero-copy">
             J'aide les équipes à comprendre leur dette technique, sécuriser
             leurs services Spring Boot ou Quarkus, puis corriger les points
             critiques.
           </p>
           <div className="hero-actions">
-            <Link className="button primary" to="/contact">
-              Faire une demande
+            <Link className="button primary" to="/offres">
+              Consulter les offres
               <ArrowRight size={18} />
             </Link>
-            <a
-              className="button secondary"
-              href={analysisExample}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Voir un exemple
-            </a>
           </div>
         </div>
 
-        <div className="audit-preview" aria-label="Exemple d'une analyse">
-          <div className="preview-topbar">
-            <span></span>
-            <span></span>
-            <span></span>
-            <strong>Votre Projet</strong>
-          </div>
-          <div className="preview-body">
-            <div>
-              <p className="preview-label">Score de santé</p>
-              <h2>Analyse technique</h2>
-            </div>
-            <div className="score-grid">
-              {metrics.map((metric) => (
-                <div className={`score ${metric.tone}`} key={metric.label}>
-                  <span>{metric.label}</span>
-                  <strong>{metric.value}</strong>
-                </div>
-              ))}
-            </div>
-            <div className="finding">
-              <div>
-                <strong>Risque prioritaire détecté</strong>
-                <p>
-                  Vulnérabilités de sécurité dans la configuration et le
-                  chiffrement, à traiter avant ouverture en production.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <section className="trust-band" aria-label="Technologies utilisées">
-        {stack.map((item) => (
-          <span key={item}>{item}</span>
-        ))}
+        <div className="technology-marquee">
+          <div className="technology-track">
+            {[false, true].map((isDuplicate) => (
+              <div
+                className="technology-set"
+                key={isDuplicate ? 'duplicate' : 'original'}
+                aria-hidden={isDuplicate || undefined}
+              >
+                {technologies.map((technology) => (
+                  <div className="technology-item" key={technology.name}>
+                    <img
+                      src={technology.logo}
+                      alt={isDuplicate ? '' : technology.name}
+                    />
+                    <span>{technology.name}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="section" id="services">
         <div className="section-heading">
           <h2 className="section-title">Services</h2>
-          <p className="section-lead">Une compréhension approfondie de votre codebase et de son infrastructure. Puis une correction vérifiée</p>
-        </div>
-        <div className="service-grid">
-          {services.map(({title, text, points }) => (
-            <article className="service-card" key={title}>
-              <h3>{title}</h3>
-              <p>{text}</p>
-              <ul>
-                {points.map((point) => (
-                  <li key={point}>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section split-section" id="rapport">
-        <div>
-          <h2 className="section-title">Analyse complète</h2>
-          <p className="section-lead">Un rapport axé technique et organisationnel.</p>
-          <p>
-            Je vous met en avant tous les problèmes de sécurité et de maintenabilité,
-            mais également les codes smells, les points d'amélioration et les zones aveugles.
-            Ensuite je vous expose les différents impacts et efforts de correction nécessaires
-            ainsi que l'urgence de ceux-ci dans un plan d'action organisé.
+          <p className="section-lead">
+            Un petit récapitulatif des services que je propose.
           </p>
         </div>
-        <div className="report-list">
-          <div>
-            <span>Synthèse exécutive pour arbitrer rapidement</span>
-          </div>
-          <div>
-            <span>Priorités P0/P1 avec zones fragiles du code</span>
-          </div>
-          <div>
-            <span>Objectifs mesurables après intervention</span>
-          </div>
+        <div className="service-journey" aria-label="Parcours principal">
+          {primaryServices.map((service, index) => (
+            <Fragment key={service.title}>
+              <button
+                className={`service-card service-step service-step-${index + 1}`}
+                type="button"
+                onClick={(event) => openService(service, event.currentTarget)}
+              >
+                <span className="service-step-label">{service.stage}</span>
+                <h3>{service.title}</h3>
+              </button>
+              {index < primaryServices.length - 1 && (
+                <ArrowRight
+                  className={`service-connector service-connector-${index + 1}`}
+                  size={24}
+                  aria-hidden="true"
+                />
+              )}
+            </Fragment>
+          ))}
         </div>
       </section>
 
@@ -170,6 +180,58 @@ function HomePage() {
           <ArrowRight size={18} />
         </Link>
       </section>
+
+      {selectedService && (
+        <div
+          className="offer-modal-backdrop service-modal-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setSelectedService(null)
+          }}
+        >
+          <section
+            className="offer-modal service-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="service-modal-title"
+          >
+            <button
+              ref={closeButtonRef}
+              className="offer-modal-close"
+              type="button"
+              aria-label="Fermer"
+              onClick={() => setSelectedService(null)}
+            >
+              <X size={20} aria-hidden="true" />
+            </button>
+
+            <div className="offer-modal-heading">
+              <h2 id="service-modal-title">{selectedService.title}</h2>
+              <p>{selectedService.text}</p>
+              <div className="service-modal-actions">
+                <Link
+                  className="button primary service-modal-link"
+                  to={`/offres#${selectedService.offersSection}`}
+                  onClick={() => setSelectedService(null)}
+                >
+                  Voir les offres
+                  <ArrowRight size={18} aria-hidden="true" />
+                </Link>
+                {selectedService.offersSection === 'analyse-diagnostic' && (
+                  <a
+                    className="button secondary service-modal-link"
+                    href={analysisExample}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Voir un exemple
+                  </a>
+                )}
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
     </main>
   )
 }

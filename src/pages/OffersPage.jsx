@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 
 const offerGroups = [
   {
+    id: 'analyse-diagnostic',
     eyebrow: 'Analyse et diagnostic',
     title: 'Comprendre les risques et décider quoi traiter en priorité.',
     description:
@@ -57,6 +58,7 @@ const offerGroups = [
     ],
   },
   {
+    id: 'correction-refactorisation',
     eyebrow: 'Correction et refactorisation',
     title: 'Transformer les constats en améliorations mesurables.',
     description:
@@ -104,6 +106,7 @@ const offerGroups = [
     ],
   },
   {
+    id: 'accompagnement-mensuel',
     eyebrow: 'Accompagnement mensuel',
     title: 'Maintenir la qualité dans la durée.',
     description:
@@ -150,6 +153,7 @@ const offerGroups = [
       'Un engagement initial de trois mois est recommandé. Les corrections importantes ou les demandes hors périmètre font l’objet d’un forfait complémentaire.',
   },
   {
+    id: 'tests-documentation',
     eyebrow: 'Tests et documentation',
     title: 'Sécuriser les parcours critiques et faciliter la reprise du projet.',
     description:
@@ -316,15 +320,10 @@ function OffersPage() {
           abonnement mensuel. Vous payez la réalisation de la prestation
           convenue.
         </p>
-        <div className="offers-hero-meta">
-          <span>Prix exprimés hors taxes</span>
-          <span>Devis adaptés à votre périmètre</span>
-          <span>Paiement échelonné selon l’offre</span>
-        </div>
       </section>
 
       {offerGroups.map((group) => (
-        <section className="offers-group" key={group.eyebrow}>
+        <section className="offers-group" id={group.id} key={group.id}>
           <div className="offers-group-heading">
             <div className="offers-group-title-row">
               <h2>{group.eyebrow}</h2>

@@ -1,16 +1,22 @@
 :root {
-  --page: #f4f7f8;
+  /* Modifie uniquement cette valeur pour changer la couleur principale du site. */
+  --brand-color: #FFAB5E;
+
+  --page: #f5f7f3;
   --panel: rgba(255, 255, 255, 0.78);
-  --soft: #f7fafb;
-  --ink: #1a262a;
-  --muted: #68777d;
-  --line: #c8d6da;
-  --line-strong: #aebfc4;
-  --teal: #20697c;
-  --teal-900: #174f5f;
-  --teal-700: #20697c;
-  --teal-200: #bfdbe3;
-  --teal-100: #e6f2f5;
+  --soft: #f8faf6;
+  --ink: #1f2922;
+  --muted: #6c776f;
+  --placeholder: #8a958d;
+  --line: color-mix(in srgb, var(--brand-color) 75%, #000000);
+  --line-strong: color-mix(in srgb, var(--brand-color) 75%, #000000);
+  --diluted: var(--brand-color);
+  --diluted-900: color-mix(in srgb, var(--brand-color) 76%, #000000);
+  --diluted-700: var(--brand-color);
+  --diluted-200: color-mix(in srgb, var(--brand-color) 26%, #ffffff);
+  --diluted-100: color-mix(in srgb, var(--brand-color) 10%, #ffffff);
+  --diluted-surface: color-mix(in srgb, var(--brand-color) 7%, #ffffff);
+  --diluted-surface-strong: color-mix(in srgb, var(--brand-color) 10%, #ffffff);
   --danger: #d85b5b;
   --success: #2d9666;
   --amber: #d99a28;
@@ -44,5 +50,5 @@ textarea {
 
 ::selection {
   color: #ffffff;
-  background: var(--teal);
+  background: var(--diluted);
 }

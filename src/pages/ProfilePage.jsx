@@ -1,78 +1,56 @@
 import profilePhoto from '../assets/photoprofil.jpeg'
-import dockerLogo from '../assets/logos/docker.png'
-import javaLogo from '../assets/logos/java.png'
-import quarkusLogo from '../assets/logos/quarkus.png'
-import sonarQubeLogo from '../assets/logos/sonarqube.svg'
-import springBootLogo from '../assets/logos/spring-boot.svg'
-import jeeLogo from '../assets/logos/JakartaEE.png'
-import junitLogo from '../assets/logos/junit.svg'
-import postgresqlLogo from '../assets/logos/postgresql.png'
-
-const technologies = [
-  { name: 'Java', logo: javaLogo },
-  { name: 'Spring Boot', logo: springBootLogo },
-  { name: 'Quarkus', logo: quarkusLogo },
-  { name: 'Jakarta EE', logo: jeeLogo },
-  { name: 'Docker', logo: dockerLogo },
-  { name: 'SonarQube', logo: sonarQubeLogo },
-  { name: 'JUnit 5', logo: junitLogo },
-  { name: 'PostgreSQL', logo: postgresqlLogo },
-]
+import imtLogo from '../assets/logos/imt.png'
+import iutLogo from '../assets/logos/iut.png'
 
 function ProfilePage() {
   return (
     <main className="profile-page">
-      <section className="profile-page-content" aria-labelledby="profile-title">
+      <section className="profile-page-content" aria-labelledby="profile-story-title">
         <div className="profile-portrait">
           <img src={profilePhoto} alt="Portrait de Paul Cancel" />
         </div>
 
-        <div className="profile-copy">
-          <h1 id="profile-title">Spécialisé Java, Spring Boot et Quarkus.</h1>
-          <p>
-            Diplomé d'un BUT informatique à Lille spécialisé en développement, je
-            suis actuellement en formation d'ingénieur à l'institut 
-            des Mines Télécom campus Nord Europe, parcours Informatique et Télécommunications. 
-            Je suis spécialisé dans le développement backend Java depuis près de 4 ans.
-          </p>
-        </div>
-
-        <div className="profile-facts">
-          <div>
-            <strong>Code review orientée production</strong>
-            <span>Architecture, dette, sécurité et tests.</span>
+        <section className="profile-story" aria-labelledby="profile-story-title">
+          <div className="profile-story-heading">
+            <h1 id="profile-story-title">Qui je suis ?</h1>
           </div>
-          <div>
-            <strong>Stack backend Java</strong>
-            <span>Spring Boot, Quarkus, JUnit, outillage qualité.</span>
-          </div>
-          <div>
-            <strong>Formation developpement</strong>
-            <span>BUT informatique puis IMT Nord Europe.</span>
-          </div>
-        </div>
-
-        <section className="profile-technologies" aria-labelledby="technologies-title">
-          <h2 id="technologies-title">Technologies</h2>
-          <div className="profile-logo-marquee">
-            <div className="profile-logo-track">
-              {[false, true].map((isDuplicate) => (
-                <div
-                  className="profile-logo-set"
-                  key={isDuplicate ? 'duplicate' : 'original'}
-                  aria-hidden={isDuplicate || undefined}
-                >
-                  {technologies.map((technology) => (
-                    <div className="profile-logo-item" key={technology.name}>
-                      <img src={technology.logo} alt={isDuplicate ? '' : technology.name} />
-                      <span>{technology.name}</span>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+          <div className="profile-story-copy">
+            <p>
+              Tout a commencé en 2011, lorsque j’avais 7 ans. Je jouais à
+              Minecraft et j’ai découvert les mods et, étant de nature
+              curieuse, j’ai voulu comprendre comment c’était possible. J’y ai
+              fait ma première rencontre avec Java, j’apprenais par la lecture
+              de code et par des tests répétés. J’ai également reçu à cette
+              période, par mon oncle lors d’un Noël, un livre sur la
+              programmation Scratch, où a débuté ma compréhension et ma passion
+              du format séquentiel.
+            </p>
+            <p>
+              Mon intérêt s’est consolidé par la spécialité Numérique et
+              Sciences Informatiques au lycée, puis par un BUT Informatique en
+              parcours réalisation d’applications : conception, développement
+              et validation. J’y ai acquis beaucoup de compétences et de bonnes
+              pratiques que j’applique quotidiennement dans mon travail, encore
+              aujourd’hui. Je poursuis ce parcours par des études d’ingénieur à
+              l’IMT Nord Europe, parcours Informatique et Télécommunications où
+              je suis actuellement en deuxième année.
+            </p>
+            <p>
+              J’aime comprendre et structurer, ce qui m’a naturellement tourné
+              vers l’analyse de code et la refacto lorsque je l’ai combinée à ma
+              passion pour le développement. J’aime la sensation que cela me
+              procure de trouver, puis de comprendre un problème, dans le but
+              d’y apporter une solution. Et j’ai à cœur également que cette
+              solution produise des résultats mesurables et adaptés aux besoins
+              nécessaires.
+            </p>
           </div>
         </section>
+
+        <div className="profile-school-logos" aria-label="Établissements de formation">
+          <img className="profile-school-logo imt" src={imtLogo} alt="IMT Nord Europe" />
+          <img className="profile-school-logo iut" src={iutLogo} alt="IUT de Lille" />
+        </div>
       </section>
     </main>
   )

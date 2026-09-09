@@ -1,6 +1,6 @@
-import { Mail } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import logo from '../assets/paul-cancel-logo.png'
+import { House, Mail } from 'lucide-react'
+import { Link, NavLink } from 'react-router-dom'
+import logo from '../assets/paul-cancel-logo.jpeg'
 
 function Header() {
   return (
@@ -9,15 +9,17 @@ function Header() {
         <img src={logo} alt="Logo Paul Cancel A&R" />
       </Link>
       <nav aria-label="Navigation principale">
-        <Link to="/#services">Services</Link>
-        <Link to="/#methode">Méthode</Link>
-        <Link to="/offres">Offres</Link>
-        <Link to="/profil">Profil</Link>
+        <NavLink className="nav-home" to="/" end>
+          <House size={16} aria-hidden="true" />
+          <span>Accueil</span>
+        </NavLink>
+        <NavLink to="/offres">Offres</NavLink>
+        <NavLink to="/profil">Profil</NavLink>
       </nav>
-      <Link className="nav-cta" to="/contact">
-        <Mail size={17} />
+      <NavLink className="nav-cta" to="/contact">
+        <Mail size={17} aria-hidden="true" />
         Contact
-      </Link>
+      </NavLink>
     </header>
   )
 }
