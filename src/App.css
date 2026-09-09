@@ -229,6 +229,8 @@
 }
 
 .button {
+  max-width: 100%;
+  box-sizing: border-box;
   border: 0;
   cursor: pointer;
   padding: 0 20px;
@@ -1080,30 +1082,6 @@
   line-height: 1.62;
 }
 
-.offer-card ul {
-  display: grid;
-  gap: 11px;
-  margin: 24px 0 0;
-  padding: 22px 0 0;
-  border-top: 1px solid var(--line);
-  list-style: none;
-}
-
-.offer-card li {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 9px;
-  align-items: start;
-  color: var(--ink);
-  font-size: 0.91rem;
-  line-height: 1.48;
-}
-
-.offer-card li svg {
-  margin-top: 2px;
-  color: var(--success);
-}
-
 .offer-card-footer {
   display: grid;
   gap: 8px;
@@ -1493,6 +1471,13 @@
     width: 100%;
   }
 
+  .home-contact-section .button,
+  .offers-custom .button {
+    flex: 0 1 auto;
+    white-space: normal;
+    text-align: center;
+  }
+
   .technology-item {
     width: 154px;
     min-height: 86px;
@@ -1577,16 +1562,72 @@
   }
 
   .offer-modal {
-    max-height: calc(100vh - 24px);
-    padding: 24px 18px;
+    width: min(100%, 520px);
+    max-height: calc(100svh - 64px);
+    padding: 20px 16px;
+  }
+
+  .service-modal-backdrop {
+    align-items: center;
+    padding: 16px;
+  }
+
+  .service-modal {
+    min-height: 260px;
+    padding: 28px 20px;
+  }
+
+  .offer-modal-heading {
+    padding-right: 42px;
+  }
+
+  .offer-modal-heading h2 {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .offer-modal-heading strong {
+    margin-top: 7px;
+    font-size: 1rem;
+  }
+
+  .offer-modal-heading > p:not(.eyebrow) {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+
+  .offer-modal-close {
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .offer-form {
+    gap: 12px;
+    margin-top: 20px;
   }
 
   .offer-form-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .offer-form label {
+    gap: 5px;
+    font-size: 0.82rem;
+  }
+
+  .offer-form input,
+  .offer-form textarea {
+    padding: 10px 11px;
+    font-size: 16px;
   }
 
   .offer-form-actions {
     flex-direction: column-reverse;
+    gap: 8px;
+    margin-top: 4px;
+    padding-top: 14px;
   }
 
   .offer-form-actions .button {

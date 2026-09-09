@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Check,
   X,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -346,14 +345,6 @@ function OffersPage() {
                 <h3>{offer.title}</h3>
                 <strong className="offer-price">{offer.price}</strong>
                 <p className="offer-description">{offer.description}</p>
-                <ul>
-                  {offer.points.map((point) => (
-                    <li key={point}>
-                      <Check size={17} aria-hidden="true" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
                 <div className="offer-card-footer">
                   {offer.note && <p>{offer.note}</p>}
                   {offer.payment && <small>{offer.payment}</small>}
