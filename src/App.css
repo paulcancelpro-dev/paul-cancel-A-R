@@ -1557,14 +1557,18 @@
   }
 
   .offer-modal-backdrop {
-    align-items: end;
+    align-items: center;
+    height: 100dvh;
+    box-sizing: border-box;
     padding: 12px;
+    overflow: hidden;
   }
 
   .offer-modal {
     width: min(100%, 520px);
-    max-height: calc(100svh - 64px);
+    max-height: calc(100dvh - 48px);
     padding: 20px 16px;
+    overscroll-behavior: contain;
   }
 
   .service-modal-backdrop {
