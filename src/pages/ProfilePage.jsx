@@ -12,7 +12,7 @@ function ProfilePage() {
 
         <section className="profile-story" aria-labelledby="profile-story-title">
           <div className="profile-story-heading">
-            <h1 id="profile-story-title">Qui je suis ?</h1>
+            <h1 id="profile-story-title">Qui suis-je ?</h1>
           </div>
           <div className="profile-story-copy">
             <p>

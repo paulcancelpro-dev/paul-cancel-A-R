@@ -510,48 +510,6 @@
   margin: 22px 0 0;
 }
 
-.method-section {
-  border-top: 1px solid var(--line);
-}
-
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.timeline li {
-  min-height: 184px;
-  padding: 20px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  background: #ffffff;
-}
-
-.timeline span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  margin-bottom: 28px;
-  border-radius: 50%;
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 850;
-  background: var(--ink);
-}
-
-.timeline p {
-  margin: 0;
-  color: var(--ink);
-  font-weight: 720;
-  line-height: 1.55;
-}
-
 .profile-page {
   position: relative;
   min-height: calc(100vh - 82px);
@@ -568,7 +526,7 @@
 .profile-page-content {
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
   grid-template-areas:
     'portrait story'
     'schools schools';
@@ -583,7 +541,7 @@
   grid-area: portrait;
   align-self: center;
   width: 100%;
-  max-width: 300px;
+  max-width: 340px;
   aspect-ratio: 4 / 5;
   box-sizing: border-box;
   overflow: hidden;
@@ -907,7 +865,6 @@
   position: relative;
   overflow: hidden;
   padding: clamp(64px, 9vw, 112px) 0 clamp(58px, 8vw, 92px);
-  border-bottom: 1px solid var(--line);
 }
 
 .offers-hero::after {
@@ -1365,7 +1322,7 @@
 
   .profile-portrait {
     align-self: center;
-    max-width: 280px;
+    max-width: 310px;
     aspect-ratio: 4 / 5;
   }
 
@@ -1375,14 +1332,6 @@
 
   .service-connector {
     transform: rotate(90deg);
-  }
-
-  .timeline {
-    grid-template-columns: 1fr;
-  }
-
-  .timeline li {
-    min-height: auto;
   }
 
   .home-contact-section {
@@ -1523,7 +1472,7 @@
   }
 
   .profile-portrait {
-    width: min(100% - 16px, 250px);
+    width: min(100% - 16px, 280px);
     aspect-ratio: 1;
   }
 

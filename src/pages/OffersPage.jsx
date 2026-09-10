@@ -313,12 +313,6 @@ function OffersPage() {
     <main className="offers-page">
       <section className="offers-hero" aria-labelledby="offers-title">
         <h1 id="offers-title">Offres et tarifs</h1>
-        <p className="offers-hero-lead">Un périmètre et un prix définis.</p>
-        <p className="offers-hero-copy">
-          Les prestations sont proposées au forfait ou sous la forme d’un
-          abonnement mensuel. Vous payez la réalisation de la prestation
-          convenue.
-        </p>
       </section>
 
       {offerGroups.map((group) => (

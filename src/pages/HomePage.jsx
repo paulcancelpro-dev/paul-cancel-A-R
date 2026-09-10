@@ -32,13 +32,6 @@ const primaryServices = [
   },
 ]
 
-const steps = [
-  'Analyse statique de la qualité de code et des vulnérabilités',
-  'Mesure de la couverture de tests et des zones aveugles',
-  'Priorisation P0/P1 des différents risques identifiés',
-  'Correction, tests JUnit 5 et contre-expertise finale',
-]
-
 const technologies = [
   { name: 'Java', logo: javaLogo },
   { name: 'Spring Boot', logo: springBootLogo },
@@ -154,21 +147,6 @@ function HomePage() {
             </Fragment>
           ))}
         </div>
-      </section>
-
-      <section className="section method-section" id="methode">
-        <div className="section-heading">
-          <h2 className="section-title">Méthode</h2>
-          <p className="section-lead">Une intervention tracée et mesurable.</p>
-        </div>
-        <ol className="timeline">
-          {steps.map((step, index) => (
-            <li key={step}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <p>{step}</p>
-            </li>
-          ))}
-        </ol>
       </section>
 
       <section className="home-contact-section" aria-labelledby="home-contact-title">
