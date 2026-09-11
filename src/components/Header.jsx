@@ -1,6 +1,6 @@
 import { House, Mail } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
-import logo from '../assets/paul-cancel-logo.jpeg'
+import logo from '../assets/paul-cancel-logo.png'
 
 function Header() {
   return (
