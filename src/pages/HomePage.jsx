@@ -2,6 +2,9 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowRight, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import analysisExample from '../assets/analyse-example.pdf'
+import analysisImage from '../assets/images/analyse.jpg'
+import correctionImage from '../assets/images/correction.jpg'
+import maintenanceImage from '../assets/images/entretien.jpg'
 import dockerLogo from '../assets/logos/docker.png'
 import javaLogo from '../assets/logos/java.png'
 import junitLogo from '../assets/logos/junit.svg'
@@ -15,20 +18,26 @@ const primaryServices = [
   {
     stage: 'Comprendre',
     title: 'Analyse et diagnostic',
+    titleLines: ['Analyse et', 'diagnostic'],
     text: 'Je regarde votre code, puis je vous fais un diagnostic des problèmes que je vous rends sous la forme d’un rapport avec un plan de résolution organisé.',
     offersSection: 'analyse-diagnostic',
+    image: analysisImage,
   },
   {
     stage: 'Améliorer',
     title: 'Correction et refactorisation',
+    titleLines: ['Correction et', 'refactorisation'],
     text: 'En me basant sur l’analyse précédente, j’applique des correctifs par ordre de priorités. Je vous montre ensuite les changements et impacts avec une contre analyse.',
     offersSection: 'correction-refactorisation',
+    image: correctionImage,
   },
   {
     stage: 'Maintenir',
     title: 'Accompagnement mensuel',
+    titleLines: ['Accompagnement', 'mensuel'],
     text: 'Une fois que votre application est dans un état stable, je vous propose de la vérifier régulièrement. L’objectif est d’éviter que la dette technique ne s\'accumule à nouveau. ',
     offersSection: 'accompagnement-mensuel',
+    image: maintenanceImage,
   },
 ]
 
@@ -134,8 +143,18 @@ function HomePage() {
                 type="button"
                 onClick={(event) => openService(service, event.currentTarget)}
               >
+                <img
+                  className="service-card-image"
+                  src={service.image}
+                  alt=""
+                  loading="lazy"
+                />
                 <span className="service-step-label">{service.stage}</span>
-                <h3>{service.title}</h3>
+                <h3>
+                  {service.titleLines.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </h3>
               </button>
               {index < primaryServices.length - 1 && (
                 <ArrowRight
@@ -183,7 +202,7 @@ function HomePage() {
               <X size={20} aria-hidden="true" />
             </button>
 
-            <div className="offer-modal-heading">
+            <div className="offer-modal-heading service-modal-content">
               <h2 id="service-modal-title">{selectedService.title}</h2>
               <p>{selectedService.text}</p>
               <div className="service-modal-actions">
