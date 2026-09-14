@@ -56,52 +56,6 @@ function HomePage() {
   const [selectedService, setSelectedService] = useState(null)
   const closeButtonRef = useRef(null)
   const serviceTriggerRef = useRef(null)
-  const technologyMarqueeRef = useRef(null)
-
-  useEffect(() => {
-    const marquee = technologyMarqueeRef.current
-    const mobileQuery = window.matchMedia('(max-width: 620px)')
-    let cycleWidth = 0
-
-    const wrapScroll = () => {
-      if (!mobileQuery.matches || !cycleWidth) return
-
-      const position = marquee.scrollLeft
-      if (position < cycleWidth || position >= cycleWidth * 2) {
-        marquee.scrollLeft =
-          cycleWidth + ((position % cycleWidth) + cycleWidth) % cycleWidth
-      }
-    }
-
-    const measure = () => {
-      if (!mobileQuery.matches) {
-        cycleWidth = 0
-        marquee.scrollLeft = 0
-        return
-      }
-
-      const sets = marquee.querySelectorAll('.technology-set')
-      const nextWidth = sets[1].getBoundingClientRect().left - sets[0].getBoundingClientRect().left
-      if (nextWidth !== cycleWidth) {
-        const progress = cycleWidth ? (marquee.scrollLeft % cycleWidth) / cycleWidth : 0
-        cycleWidth = nextWidth
-        marquee.scrollLeft = cycleWidth * (1 + progress)
-      }
-    }
-
-    const observer = new ResizeObserver(measure)
-    observer.observe(marquee)
-    observer.observe(marquee.querySelector('.technology-set'))
-    marquee.addEventListener('scroll', wrapScroll, { passive: true })
-    mobileQuery.addEventListener('change', measure)
-    measure()
-
-    return () => {
-      observer.disconnect()
-      marquee.removeEventListener('scroll', wrapScroll)
-      mobileQuery.removeEventListener('change', measure)
-    }
-  }, [])
 
   useEffect(() => {
     if (!selectedService) return undefined
@@ -151,19 +105,19 @@ function HomePage() {
       </section>
 
       <section className="trust-band" aria-label="Technologies utilisées">
-        <div className="technology-marquee" ref={technologyMarqueeRef}>
+        <div className="technology-marquee">
           <div className="technology-track">
-            {[0, 1, 2].map((setIndex) => (
+            {[0, 1].map((setIndex) => (
               <div
                 className="technology-set"
                 key={setIndex}
-                aria-hidden={setIndex !== 1 || undefined}
+                aria-hidden={setIndex !== 0 || undefined}
               >
                 {technologies.map((technology) => (
                   <div className="technology-item" key={technology.name}>
                     <img
                       src={technology.logo}
-                      alt={setIndex !== 1 ? '' : technology.name}
+                      alt={setIndex !== 0 ? '' : technology.name}
                     />
                     <span>{technology.name}</span>
                   </div>
