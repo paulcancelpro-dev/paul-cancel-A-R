@@ -1430,6 +1430,31 @@
     padding-left: 18px;
   }
 
+  .technology-marquee {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    touch-action: pan-x;
+  }
+
+  .technology-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .technology-track {
+    animation: none;
+  }
+
+  .technology-set[aria-hidden='true'] {
+    display: none;
+  }
+
+  .technology-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
   .navbar {
     gap: 6px;
     padding: 10px 14px;
