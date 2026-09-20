@@ -1353,6 +1353,7 @@
   }
 
   .contact-page .contact-section {
+    grid-template-columns: minmax(0, 1fr);
     min-height: auto;
     gap: 46px;
     padding-top: 44px;
@@ -1498,8 +1499,30 @@
   }
 
   .contact-page .contact-section {
+    gap: 30px;
     padding-top: 30px;
     padding-bottom: 64px;
+  }
+
+  .contact-page h1 {
+    font-size: clamp(2rem, 9vw, 3rem);
+    overflow-wrap: break-word;
+  }
+
+  .contact-intro,
+  .contact-card {
+    min-width: 0;
+  }
+
+  .contact-card {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 22px 18px;
+  }
+
+  .contact-card h2 {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+    line-height: 1.15;
   }
 
   .contact-back {
@@ -1507,7 +1530,9 @@
   }
 
   .contact-email {
-    padding: 16px;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 16px 12px;
   }
 
   .profile-page-content {
@@ -1521,6 +1546,7 @@
   }
 
   .profile-portrait {
+    justify-self: center;
     width: min(100% - 16px, 280px);
     aspect-ratio: 1;
   }
