@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowRight, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import TechnologyMarquee from '../components/TechnologyMarquee'
 import analysisExample from '../assets/analyse-example.pdf'
 import analysisImage from '../assets/images/analyse.jpg'
 import correctionImage from '../assets/images/correction.jpg'
@@ -105,27 +106,7 @@ function HomePage() {
       </section>
 
       <section className="trust-band" aria-label="Technologies utilisées">
-        <div className="technology-marquee">
-          <div className="technology-track">
-            {[0, 1].map((setIndex) => (
-              <div
-                className="technology-set"
-                key={setIndex}
-                aria-hidden={setIndex !== 0 || undefined}
-              >
-                {technologies.map((technology) => (
-                  <div className="technology-item" key={technology.name}>
-                    <img
-                      src={technology.logo}
-                      alt={setIndex !== 0 ? '' : technology.name}
-                    />
-                    <span>{technology.name}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <TechnologyMarquee technologies={technologies} />
       </section>
 
       <section className="section" id="services">

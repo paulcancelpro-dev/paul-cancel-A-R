@@ -267,16 +267,74 @@
   border-top: 1px solid var(--line);
 }
 
+.technology-carousel {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 6px;
+}
+
+.technology-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.technology-arrow:hover,
+.technology-arrow:active {
+  background: var(--diluted-100);
+  border-color: var(--line);
+}
+
+.technology-arrow:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
 .technology-marquee {
+  --edge-fade: clamp(18px, 5vw, 60px);
+  position: relative;
   width: 100%;
+  mask-image: linear-gradient(to right, transparent, #000 var(--edge-fade), #000 calc(100% - var(--edge-fade)), transparent);
   overflow: hidden;
+}
+
+.technology-marquee::before,
+.technology-marquee::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: var(--edge-fade);
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.technology-marquee::before {
+  left: 0;
+  mask-image: linear-gradient(to right, #000, transparent);
+}
+
+.technology-marquee::after {
+  right: 0;
+  mask-image: linear-gradient(to left, #000, transparent);
 }
 
 .technology-track {
   width: max-content;
   display: flex;
   gap: 18px;
-  animation: technology-scroll 24s linear infinite;
   will-change: transform;
 }
 
@@ -312,26 +370,6 @@
   font-size: 0.9rem;
   font-weight: 800;
   white-space: nowrap;
-}
-
-@keyframes technology-scroll {
-  to {
-    transform: translateX(calc(-50% - 9px));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .technology-marquee {
-    overflow-x: auto;
-  }
-
-  .technology-track {
-    animation: none;
-  }
-
-  .technology-set[aria-hidden='true'] {
-    display: none;
-  }
 }
 
 .section,
