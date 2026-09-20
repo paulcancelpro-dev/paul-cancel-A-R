@@ -31,9 +31,6 @@ function ContactPage() {
             </span>
             <ArrowRight size={20} aria-hidden="true" />
           </a>
-          <p className="contact-note">
-            Analyse, refacto et accompagnement sur vos applications Java.
-          </p>
         </aside>
       </section>
     </main>
