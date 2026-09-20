@@ -35,7 +35,7 @@ const primaryServices = [
     stage: 'Maintenir',
     title: 'Accompagnement mensuel',
     titleLines: ['Accompagnement', 'mensuel'],
-    text: 'Une fois que votre application est dans un état stable, je vous propose de la vérifier régulièrement. L’objectif est d’éviter que la dette technique ne s\'accumule à nouveau. ',
+    text: 'Je suis régulièrement l’évolution de votre application et je corrige progressivement les problèmes identifiés. Le suivi mensuel est complété par des interventions sur devis à tarif préférentiel, validées ensemble avant leur réalisation.',
     offersSection: 'accompagnement-mensuel',
     image: maintenanceImage,
   },

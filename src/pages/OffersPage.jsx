@@ -7,220 +7,71 @@ import { Link } from 'react-router-dom'
 
 const offerGroups = [
   {
-    id: 'analyse-diagnostic',
-    eyebrow: 'Analyse et diagnostic',
-    title: 'Comprendre les risques et décider quoi traiter en priorité.',
+    id: 'services',
+    eyebrow: 'Les trois services',
+    title: 'Un accompagnement adapté à votre application.',
     description:
-      'Chaque analyse combine une lecture automatisée et manuelle du périmètre, puis aboutit à des recommandations directement exploitables.',
+      'Chaque intervention est définie avec vous : périmètre, priorités, livrables et budget.',
     offers: [
       {
-        title: 'Analyse ciblée',
-        price: '700 € HT',
+        id: 'analyse-diagnostic',
+        title: 'Analyse et diagnostic',
+        budget: {
+          amounts: ['Environ 1 200 € HT'],
+          note: 'Analyse, rapport et restitution sur le périmètre convenu.',
+        },
         description:
-          'Pour étudier un composant, un module ou une problématique précise liée à la qualité, aux dépendances, aux tests, aux performances ou à la maintenabilité.',
+          'Comprendre l’état de votre application, identifier les risques et décider quoi traiter en priorité.',
         points: [
-          'Entretien initial et cadrage du périmètre',
-          'Analyse automatisée et manuelle',
-          'Rapport des problèmes et recommandations prioritaires',
+          'Lecture automatisée et manuelle du code',
+          'Architecture, dépendances, vulnérabilités et tests',
+          'Rapport et plan d’action priorisé',
           'Réunion de restitution',
         ],
-        note: "Cette formule ne constitue pas une analyse complète de l'application.",
-        payment: 'Acompte de 350 €, puis solde à la livraison.',
       },
       {
-        title: 'Analyse complète',
-        price: '1 750 € HT',
+        id: 'correction-refactorisation',
+        title: 'Correction et refactorisation',
+        budget: {
+          amounts: ['Environ 3 000 € HT'],
+          note: 'Budget du sprint, hors analyse initiale. Les corrections à réaliser sont définies dans le devis.',
+        },
         description:
-          "Pour une application de taille limitée ou un périmètre fonctionnel clairement défini, avec une vue d'ensemble technique et organisationnelle.",
+          'À partir d’un diagnostic, corriger les problèmes et améliorer la maintenabilité sur un périmètre convenu ensemble.',
         points: [
-          'Architecture, maintenabilité et dépendances',
-          'Vulnérabilités, tests et documentation',
-          'Synthèse décideur et rapport technique classé de P0 à P3',
-          "Estimation de la dette et plan d'action priorisé",
-        ],
-        payment: 'Acompte de 700 €, puis solde de 1 050 € à la livraison.',
-      },
-      {
-        title: 'Analyse multi-modules',
-        price: '2 800 € HT',
-        description:
-          'Pour les projets composés de plusieurs modules, services ou dépôts de code, avec étude de leurs interactions et des composants critiques.',
-        points: [
-          "Tous les éléments de l'analyse complète",
-          "Entretiens avec les membres de l'équipe concernés",
-          'Étude des interactions, pipelines et composants critiques',
-          'Atelier de priorisation et feuille de route',
-        ],
-        note: 'Le périmètre exact est validé avant la signature du devis.',
-        payment: 'Paiement en trois échéances.',
-      },
-    ],
-  },
-  {
-    id: 'correction-refactorisation',
-    eyebrow: 'Correction et refactorisation',
-    title: 'Transformer les constats en améliorations mesurables.',
-    description:
-      "Les sprints sont définis à partir d'une analyse préalable et concentrés sur une liste de priorités clairement validée.",
-    offers: [
-      {
-        title: 'Sprint ciblé',
-        price: '1 470 € HT',
-        description:
-          'Pour traiter un composant ou un groupe restreint de problèmes prioritaires sans engager un chantier plus large.',
-        points: [
-          'Traitement des éléments sélectionnés',
-          'Création ou adaptation des tests nécessaires',
-          'Documentation des changements',
-          'Restitution et backlog des éléments restants',
-        ],
-        payment: 'Acompte de 735 €, puis solde à la livraison.',
-      },
-      {
-        title: 'Sprint renforcé',
-        price: '2 450 € HT',
-        description:
-          'Pour traiter plusieurs problèmes liés ou intervenir sur un composant plus important et fortement couplé.',
-        points: [
-          'Correction de vulnérabilités et de bugs',
-          'Refactorisation des composants sélectionnés',
-          'Amélioration des tests et de la documentation',
-          'Comparaison des indicateurs avant et après intervention',
-        ],
-        payment: 'Acompte de 980 €, puis solde de 1 470 € à la livraison.',
-      },
-      {
-        title: 'Sprint transformation',
-        price: '4 900 € HT',
-        description:
-          'Pour un chantier technique structuré en plusieurs étapes, avec un suivi intermédiaire des éléments les plus critiques.',
-        points: [
-          'Traitement des éléments P0',
-          'Traitement des éléments P1 sélectionnés',
-          'Amélioration des tests et de la maintenabilité',
-          'Documentation, rendu intermédiaire et restitution',
-        ],
-        payment: 'Paiement en trois échéances.',
-      },
-    ],
-  },
-  {
-    id: 'accompagnement-mensuel',
-    eyebrow: 'Accompagnement mensuel',
-    title: 'Maintenir la qualité dans la durée.',
-    description:
-      "Ces abonnements sont réservés aux applications ayant déjà fait l'objet d'une analyse ou d'un sprint de refactorisation. Ils sont réglés en début de mois.",
-    offers: [
-      {
-        title: 'Suivi essentiel',
-        price: '350 € HT / mois',
-        description:
-          'Un suivi régulier pour conserver une vision claire des évolutions récentes et des risques émergents.',
-        points: [
-          'Analyse des changements récents',
-          'Suivi de la qualité, des dépendances et des vulnérabilités',
-          'Rapport synthétique',
-          'Réunion mensuelle',
+          'Correction des bugs et vulnérabilités sélectionnés',
+          'Refactorisation des composants concernés',
+          'Création ou adaptation des tests',
+          'Documentation et bilan des améliorations',
         ],
       },
       {
-        title: 'Suivi actif',
-        price: '700 € HT / mois',
+        id: 'accompagnement-mensuel',
+        title: 'Accompagnement mensuel',
+        budget: {
+          amounts: ['960 € HT / mois sur 6 mois', '840 € HT / mois sur 12 mois'],
+          note: 'Soit 5 760 € HT sur 6 mois ou 10 080 € HT sur 12 mois, hors analyse initiale. Le montant mensuel est fixé au devis pour la durée choisie.',
+        },
         description:
-          'Une formule qui associe veille technique, revue ciblée et améliorations ponctuelles de la codebase.',
+          'Un suivi sur 6 ou 12 mois pour analyser les évolutions de votre application et corriger progressivement les problèmes identifiés. Le suivi mensuel et les interventions sont chiffrés séparément.',
         points: [
-          'Veille qualité et revue des changements récents',
-          'Correction de problèmes mineurs',
-          'Amélioration ponctuelle des tests ou de la documentation',
-          'Réunion mensuelle de suivi',
-        ],
-      },
-      {
-        title: 'Suivi continu',
-        price: '1 400 € HT / mois',
-        description:
-          'Un accompagnement approfondi pour faire progresser régulièrement la qualité et traiter les priorités techniques.',
-        points: [
-          'Suivi régulier de la qualité et des dépendances',
-          'Revues de code et traitement de problèmes prioritaires',
-          'Amélioration progressive des tests et de la documentation',
-          'Réunion mensuelle et bilan trimestriel',
+          'Revue des changements et suivi de la qualité',
+          'Suivi des dépendances et vulnérabilités',
+          'Rapport mensuel et recommandations prioritaires',
+          'Corrections et refactorisations progressives sur devis à tarif préférentiel',
+          'Validation de chaque devis avant intervention, dans la limite du volume mensuel convenu',
         ],
       },
     ],
-    footer:
-      'Un engagement initial de trois mois est recommandé. Les corrections importantes ou les demandes hors périmètre font l’objet d’un forfait complémentaire.',
   },
-  {
-    id: 'tests-documentation',
-    eyebrow: 'Tests et documentation',
-    title: 'Sécuriser les parcours critiques et faciliter la reprise du projet.',
-    description:
-      'Des prestations dédiées pour renforcer la stratégie de tests ou rendre la connaissance technique accessible à votre équipe.',
-    offers: [
-      {
-        title: 'Analyse des tests ciblée',
-        price: '980 € HT',
-        description:
-          'Pour un module, un parcours métier ou une problématique de tests précise.',
-        points: [
-          'Analyse des tests existants',
-          'Identification des parcours critiques insuffisamment protégés',
-          "Recommandations sur l'organisation des tests",
-          "Plan d'action et réunion de restitution",
-        ],
-        note: "La création d'un ensemble important de tests fait l'objet d'un sprint complémentaire.",
-        payment: 'Acompte de 490 €, puis solde à la livraison.',
-      },
-      {
-        title: 'Stratégie de tests complète',
-        price: '1 960 € HT',
-        description:
-          "Pour une application de taille limitée ou un périmètre fonctionnel important nécessitant une stratégie globale.",
-        points: [
-          'État des lieux et cartographie des parcours critiques',
-          "Analyse des tests unitaires, d'intégration et de bout en bout",
-          "Définition d'une stratégie et d'objectifs de couverture adaptés",
-          'Exemples représentatifs et feuille de route',
-        ],
-        payment: 'Acompte de 784 €, puis solde de 1 176 € à la livraison.',
-      },
-      {
-        title: 'Documentation ciblée',
-        price: '980 € HT',
-        description:
-          'Pour documenter un composant, une API ou une procédure précise du projet.',
-        points: [
-          "Documentation d'un module ou d'une API",
-          "Procédure d'installation et de test",
-          'Procédure de déploiement',
-          'Livrable adapté aux utilisateurs concernés',
-        ],
-        payment: 'Acompte de 490 €, puis solde à la livraison.',
-      },
-      {
-        title: 'Documentation projet',
-        price: '1 960 € HT',
-        description:
-          "Pour faciliter la reprise du projet et l'arrivée de nouveaux développeurs.",
-        points: [
-          'Présentation de l’architecture et des principaux composants',
-          "Guide d'installation et d'arrivée pour les développeurs",
-          'Documentation des procédures de test et de déploiement',
-          'Réunion de transmission et recommandations de suivi',
-        ],
-        note: 'La prestation porte sur les éléments convenus et les informations rendues accessibles.',
-        payment: 'Acompte de 784 €, puis solde de 1 176 € à la livraison.',
-      },
-    ],
-  },
+
 ]
 
-const createOfferMailto = ({ title, price }, client) => {
-  const subject = `Demande concernant l'offre ${title}`
+const createOfferMailto = ({ title }, client) => {
+  const subject = `Demande de devis — ${title}`
   const body = `Bonjour,
 
-Je souhaite échanger au sujet de l'offre « ${title} » (${price}).
+Je souhaite obtenir un devis pour la prestation « ${title} ».
 
 Entreprise : ${client.company}
 Nom et fonction : ${client.name}
@@ -312,7 +163,13 @@ function OffersPage() {
   return (
     <main className="offers-page">
       <section className="offers-hero" aria-labelledby="offers-title">
-        <h1 id="offers-title">Offres et tarifs</h1>
+        <h1 id="offers-title">Services</h1>
+        <p className="offers-hero-lead">Un périmètre et un budget adapté à votre projet.</p>
+        <p className="offers-hero-copy">
+          Toutes les prestations sont proposées uniquement sur devis. Le budget
+          dépend de la taille et de la complexité de l'application, de son
+          architecture, de l’état du code et du périmètre de l'intervention.
+        </p>
       </section>
 
       {offerGroups.map((group) => (
@@ -325,33 +182,58 @@ function OffersPage() {
             <p className="offers-group-description">{group.description}</p>
           </div>
 
+          <p className="offers-reference-scope">
+            <strong>Budget indicatif :</strong> les tarifs ci-dessous correspondent
+            à une application Spring Boot d’environ <strong>15 packages, 50 classes
+            et 250 méthodes</strong>. Les montants sont ajustés sur devis selon
+            la complexité et les besoins.
+          </p>
+
           <div className="offers-grid">
-            {group.offers.map(({ ...offer }) => (
+            {group.offers.map((offer) => (
               <article
-                className={`offer-card`}
+                className="offer-card"
+                id={offer.id}
                 key={offer.title}
                 role="button"
                 tabIndex="0"
-                aria-label={`Choisir l'offre ${offer.title}`}
+                aria-label={`Demander un devis : ${offer.title}`}
                 onClick={() => openOffer(offer)}
                 onKeyDown={(event) => handleOfferKeyDown(event, offer)}
               >
                 <h3>{offer.title}</h3>
-                <strong className="offer-price">{offer.price}</strong>
                 <p className="offer-description">{offer.description}</p>
-                <div className="offer-card-footer">
-                  {offer.note && <p>{offer.note}</p>}
-                  {offer.payment && <small>{offer.payment}</small>}
-                </div>
+                <ul className="offer-points">
+                  {offer.points.map((point) => <li key={point}>{point}</li>)}
+                </ul>
+                {offer.budget && (
+                  <div className="offer-budget">
+                    <p className="offer-budget-label">Budget indicatif :</p>
+                    {offer.budget.amounts.map((amount) => (
+                      <strong key={amount}>{amount}</strong>
+                    ))}
+                    <p>{offer.budget.note}</p>
+                  </div>
+                )}
                 <span className="offer-card-action">
-                  Choisir cette offre
+                  Demander un devis
                   <ArrowRight size={17} aria-hidden="true" />
                 </span>
               </article>
             ))}
           </div>
 
-          {group.footer && <p className="offers-group-note">{group.footer}</p>}
+          {group.id === 'services' && (
+            <p className="offers-group-note">
+              Ces montants sont des repères indicatifs, à confirmer sur devis selon
+              la complexité et le périmètre. Le nombre de classes ne suffit pas à
+              déterminer le budget. Dans l’accompagnement, les corrections et
+              refactorisations sont facturées en supplément du suivi, sur devis
+              à tarif préférentiel accepté avant intervention. Leur périmètre et
+              le volume d’intervention mensuel sont définis au devis ; les demandes
+              au-delà de ce volume sont planifiées séparément.
+            </p>
+          )}
         </section>
       ))}
 
@@ -360,11 +242,11 @@ function OffersPage() {
           <div className="offers-custom-heading">
             <h2 id="custom-offer-title">Besoin spécifique</h2>
           </div>
-          <p className="offers-custom-lead">Votre projet ne rentre pas dans une case&nbsp;?</p>
+          <p className="offers-custom-lead">Parlons de votre application.</p>
           <p>
-            Après un entretien de cadrage, je vous propose un forfait
-            personnalisé précisant le périmètre, les priorités, les livrables,
-            les exclusions, le calendrier et les conditions de paiement.
+            Après un entretien de cadrage, je vous propose un devis précisant
+            le périmètre, les livrables et le budget de votre intervention. Le calendrier et
+            les conditions de paiement sont définis dans ce devis.
           </p>
         </div>
         <Link className="button primary" to="/contact">
@@ -402,8 +284,8 @@ function OffersPage() {
 
             <div className="offer-modal-heading">
               <h2 id="offer-modal-title">{selectedOffer.title}</h2>
-              <strong>{selectedOffer.price}</strong>
-              <p>Complétez ces informations avant d’ouvrir votre email.</p>
+              <strong>Budget personnalisé sur devis</strong>
+              <p>Décrivez votre application pour préparer votre demande de devis. Ce formulaire ouvre votre messagerie avec un email prérempli.</p>
             </div>
 
             <form
@@ -521,7 +403,7 @@ function OffersPage() {
                 <textarea
                   name="details"
                   rows="3"
-                  placeholder="Contexte, technologies, contraintes…"
+                  placeholder="Technologies, nombre de modules, packages ou classes, complexité métier, tests existants, contraintes…"
                 ></textarea>
               </label>
 
