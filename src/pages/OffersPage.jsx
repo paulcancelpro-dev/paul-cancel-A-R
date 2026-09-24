@@ -4,62 +4,68 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import analysisImage from '../assets/images/analyse.jpg'
+import correctionImage from '../assets/images/correction.jpg'
+import maintenanceImage from '../assets/images/entretien.jpg'
+import analysisExample from '../assets/analyse-example.pdf'
 
 const offerGroups = [
   {
     id: 'services',
-    eyebrow: 'Les trois services',
-    title: 'Un accompagnement adapté à votre application.',
-    description:
-      'Chaque intervention est définie avec vous : périmètre, priorités, livrables et budget.',
     offers: [
       {
         id: 'analyse-diagnostic',
         title: 'Analyse et diagnostic',
+        stage: 'Comprendre',
+        image: analysisImage,
+        example: analysisExample,
         budget: {
-          amounts: ['Environ 1 200 € HT'],
+          amounts: [{ price: '~1 200 € HT', label: 'pour l’analyse' }],
           note: 'Analyse, rapport et restitution sur le périmètre convenu.',
         },
         description:
-          'Comprendre l’état de votre application, identifier les risques et décider quoi traiter en priorité.',
+          'Je vous aide à comprendre ce qui fragilise votre application et quoi corriger en premier.',
         points: [
-          'Lecture automatisée et manuelle du code',
-          'Architecture, dépendances, vulnérabilités et tests',
-          'Rapport et plan d’action priorisé',
-          'Réunion de restitution',
+          'Analyse du code, de l’architecture, des dépendances et des tests',
+          'Rapport des risques et plan d’action priorisé',
+          'Restitution pour décider des prochaines étapes',
         ],
       },
       {
         id: 'correction-refactorisation',
         title: 'Correction et refactorisation',
+        stage: 'Améliorer',
+        image: correctionImage,
         budget: {
-          amounts: ['Environ 3 000 € HT'],
+          amounts: [{ price: '~3 000 € HT', label: 'pour le sprint' }],
           note: 'Budget du sprint, hors analyse initiale. Les corrections à réaliser sont définies dans le devis.',
         },
         description:
-          'À partir d’un diagnostic, corriger les problèmes et améliorer la maintenabilité sur un périmètre convenu ensemble.',
+          'Je transforme le diagnostic en corrections concrètes pour rendre votre code plus fiable et plus facile à faire évoluer.',
         points: [
-          'Correction des bugs et vulnérabilités sélectionnés',
-          'Refactorisation des composants concernés',
-          'Création ou adaptation des tests',
-          'Documentation et bilan des améliorations',
+          'Corrections et refactorisation sur le périmètre validé',
+          'Tests et documentation des changements',
+          'Bilan des améliorations apportées',
         ],
       },
       {
         id: 'accompagnement-mensuel',
         title: 'Accompagnement mensuel',
+        stage: 'Maintenir',
+        image: maintenanceImage,
         budget: {
-          amounts: ['960 € HT / mois sur 6 mois', '840 € HT / mois sur 12 mois'],
-          note: 'Soit 5 760 € HT sur 6 mois ou 10 080 € HT sur 12 mois, hors analyse initiale. Le montant mensuel est fixé au devis pour la durée choisie.',
+          amounts: [
+            { price: '~960 € HT', label: '/ mois · engagement de 6 mois' },
+            { price: '~840 € HT', label: '/ mois · engagement de 12 mois' },
+          ],
+          note: 'Soit 5 760 € HT sur 6 mois ou 10 080 € HT sur 12 mois, hors analyse initiale. Suivi seul : correctifs facturés séparément sur devis accepté.',
         },
         description:
-          'Un suivi sur 6 ou 12 mois pour analyser les évolutions de votre application et corriger progressivement les problèmes identifiés. Le suivi mensuel et les interventions sont chiffrés séparément.',
+          'Je suis les évolutions de votre application et vous accompagne pour traiter les problèmes au fil du temps.',
         points: [
-          'Revue des changements et suivi de la qualité',
-          'Suivi des dépendances et vulnérabilités',
-          'Rapport mensuel et recommandations prioritaires',
-          'Corrections et refactorisations progressives sur devis à tarif préférentiel',
-          'Validation de chaque devis avant intervention, dans la limite du volume mensuel convenu',
+          'Revue mensuelle du code, des dépendances et des risques',
+          'Rapport, restitution et priorités actualisées',
+          'Correctifs en supplément, sur devis à tarif préférentiel',
         ],
       },
     ],
@@ -116,13 +122,6 @@ function OffersPage() {
     setSelectedOffer(offer)
   }
 
-  const handleOfferKeyDown = (event, offer) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      openOffer(offer)
-    }
-  }
-
   const handleOfferSubmit = (event) => {
     event.preventDefault()
     const client = Object.fromEntries(new FormData(event.currentTarget))
@@ -163,45 +162,44 @@ function OffersPage() {
   return (
     <main className="offers-page">
       <section className="offers-hero" aria-labelledby="offers-title">
-        <h1 id="offers-title">Services</h1>
-        <p className="offers-hero-lead">Un périmètre et un budget adapté à votre projet.</p>
+        <h1 id="offers-title">Offres</h1>
+        <p className="offers-hero-lead">Comprendre. Améliorer. Maintenir.</p>
         <p className="offers-hero-copy">
-          Toutes les prestations sont proposées uniquement sur devis. Le budget
-          dépend de la taille et de la complexité de l'application, de son
-          architecture, de l’état du code et du périmètre de l'intervention.
+          Je vous accompagne dans l’analyse, la correction et le suivi de votre
+          application, pour un besoin ciblé ou dans la durée. Chaque prestation
+          fait l’objet d’un devis adapté à la taille et à la complexité du projet,
+          avec un périmètre, des priorités, des livrables et un budget définis ensemble.
         </p>
       </section>
 
       {offerGroups.map((group) => (
-        <section className="offers-group" id={group.id} key={group.id}>
-          <div className="offers-group-heading">
-            <div className="offers-group-title-row">
-              <h2>{group.eyebrow}</h2>
-            </div>
-            <p className="offers-group-lead">{group.title}</p>
-            <p className="offers-group-description">{group.description}</p>
+        <section className="offers-group" id={group.id} key={group.id} aria-label="Prestations et budgets indicatifs">
+          <div className="offers-reference-scope">
+            <strong>Budget indicatif</strong>
+            <ul aria-label="Périmètre indicatif">
+              <li>Spring Boot</li>
+              <li>~15 packages</li>
+              <li>~50 classes</li>
+              <li>~250 méthodes</li>
+            </ul>
           </div>
 
-          <p className="offers-reference-scope">
-            <strong>Budget indicatif :</strong> les tarifs ci-dessous correspondent
-            à une application Spring Boot d’environ <strong>15 packages, 50 classes
-            et 250 méthodes</strong>. Les montants sont ajustés sur devis selon
-            la complexité et les besoins.
-          </p>
-
           <div className="offers-grid">
-            {group.offers.map((offer) => (
+            {group.offers.map((offer, index) => (
               <article
                 className="offer-card"
                 id={offer.id}
                 key={offer.title}
-                role="button"
-                tabIndex="0"
-                aria-label={`Demander un devis : ${offer.title}`}
-                onClick={() => openOffer(offer)}
-                onKeyDown={(event) => handleOfferKeyDown(event, offer)}
+                aria-labelledby={`${offer.id}-title`}
               >
-                <h3>{offer.title}</h3>
+                <div className="offer-visual">
+                  <img src={offer.image} alt="" loading="lazy" />
+                  <div className="offer-stage">
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    {offer.stage}
+                  </div>
+                </div>
+                <h3 id={`${offer.id}-title`}>{offer.title}</h3>
                 <p className="offer-description">{offer.description}</p>
                 <ul className="offer-points">
                   {offer.points.map((point) => <li key={point}>{point}</li>)}
@@ -210,15 +208,27 @@ function OffersPage() {
                   <div className="offer-budget">
                     <p className="offer-budget-label">Budget indicatif :</p>
                     {offer.budget.amounts.map((amount) => (
-                      <strong key={amount}>{amount}</strong>
+                      <div className="offer-budget-amount" key={amount.label}>
+                        <strong>{amount.price}</strong>
+                        <span>{amount.label}</span>
+                      </div>
                     ))}
                     <p>{offer.budget.note}</p>
                   </div>
                 )}
-                <span className="offer-card-action">
-                  Demander un devis
-                  <ArrowRight size={17} aria-hidden="true" />
-                </span>
+                <div className="offer-actions">
+                  <button className="button primary offer-card-action" type="button"
+                    aria-label={`Demander un devis : ${offer.title}`}
+                    onClick={() => openOffer(offer)}>
+                    Demander un devis
+                    <ArrowRight size={17} aria-hidden="true" />
+                  </button>
+                  {offer.example && (
+                    <a className="offer-example" href={offer.example} target="_blank" rel="noreferrer">
+                      Voir un exemple de rapport <span className="offer-example-hint">(PDF, nouvel onglet)</span>
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
           </div>
@@ -230,8 +240,7 @@ function OffersPage() {
               déterminer le budget. Dans l’accompagnement, les corrections et
               refactorisations sont facturées en supplément du suivi, sur devis
               à tarif préférentiel accepté avant intervention. Leur périmètre et
-              le volume d’intervention mensuel sont définis au devis ; les demandes
-              au-delà de ce volume sont planifiées séparément.
+              le volume d’intervention mensuel sont définis au devis.
             </p>
           )}
         </section>
@@ -239,18 +248,14 @@ function OffersPage() {
 
       <section className="offers-custom" aria-labelledby="custom-offer-title">
         <div>
-          <div className="offers-custom-heading">
-            <h2 id="custom-offer-title">Besoin spécifique</h2>
+          <div className="offers-custom-heading"> 
+            <h2 id="custom-offer-title">Rien ne vous correspond ?</h2>
           </div>
-          <p className="offers-custom-lead">Parlons de votre application.</p>
-          <p>
-            Après un entretien de cadrage, je vous propose un devis précisant
-            le périmètre, les livrables et le budget de votre intervention. Le calendrier et
-            les conditions de paiement sont définis dans ce devis.
-          </p>
+          <p className="offers-custom-lead">Parlons de ce qui vous freine aujourd’hui.</p>
+          <p>Discutons de votre projet et je vous ferais un devis personnalisé.</p>
         </div>
         <Link className="button primary" to="/contact">
-          Demander un devis
+          Me contacter
           <ArrowRight size={18} aria-hidden="true" />
         </Link>
       </section>
